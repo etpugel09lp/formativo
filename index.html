@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Eventos Pedagógicos | UGEL 09-Huaura</title>
+    
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta de colores ajustada para un look más corporativo */
+            --bg-color: #1e293b; /* Color principal: Pizarra oscuro */
+            --pattern-color: rgba(255, 255, 255, 0.04); /* Color del patrón sutil */
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #e2e8f0; /* Un blanco más suave */
+            --text-color-light: #94a3b8; /* Gris claro para subtítulos */
+            --accent-color: #38bdf8; /* Azul cielo para acentos */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+            /* --- NUEVO FONDO FORMAL --- */
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 1px 1px, var(--pattern-color) 1px, transparent 0);
+            background-size: 20px 20px;
+            /* --- Fin del nuevo fondo --- */
+
+            padding: 20px;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            padding: 40px 50px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .header-logo {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-weight: 300;
+            font-size: 1rem;
+            color: var(--text-color-light);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--text-color-light);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .option-card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .option-card p {
+            font-size: 0.95rem;
+            color: var(--text-color-light);
+        }
+        
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Diseño Responsivo para Móviles */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <div class="header-logo">UGEL 09 - HUAURA</div>
+            <p class="header-subtitle">Área de Gestión Pedagógica</p>
+            <h1>Portal de Eventos y Formación</h1>
+            <p class="intro-text">Bienvenido(a). Seleccione la acción que desea realizar para continuar.</p>
+        </header>
+
+        <main>
+            <div class="options-grid">
+                <!-- Reemplaza '#' con las URLs de tu aplicación de Google Script -->
+                <a href="#" class="option-card">
+                    <div class="icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h2>Inscribir a Evento</h2>
+                    <p>Regístrese en los talleres y seminarios disponibles.</p>
+                </a>
+                
+                <a href="#" class="option-card">
+                    <div class="icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Registrar Asistencia</h2>
+                    <p>Marque su asistencia a los eventos programados para hoy.</p>
+                </a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 UGEL 09-Huaura. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
