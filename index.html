@@ -1,14 +1,12 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Eventos Pedagógicos | UGEL 09-Huaura</title>
     
-    <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     
-    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -100,8 +98,9 @@
         }
 
         .options-grid {
+            /* === MODIFICACIÓN: 3 columnas para el nuevo botón === */
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr; 
             gap: 30px;
         }
 
@@ -157,7 +156,8 @@
             }
 
             .options-grid {
-                grid-template-columns: 1fr;
+                /* Se mantiene 1 columna en móvil para mejor legibilidad */
+                grid-template-columns: 1fr; 
                 gap: 20px;
             }
         }
@@ -167,7 +167,6 @@
 
     <div class="main-container">
         <header>
-            <!-- === IMAGEN AÑADIDA AQUÍ === -->
             <img src="LOGOU.png" alt="Logo UGEL 09" class="logo-img">
             
             <div class="header-logo">UGEL 09 - HUAURA</div>
@@ -178,8 +177,7 @@
 
         <main>
             <div class="options-grid">
-                <!-- Reemplaza '#' con las URLs de tu aplicación de Google Script -->
-                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbwUwRhioQgsVZo39yEp04A45B_bZYXcrnZ1Pz0HBR74kiuxiqqajs4u53315kZPHwQA1Q/exec" Target="_blank" class="option-card">
+                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbwUwRhioQgsVZo39yEp04A45B_bZYXcrnZ1Pz0HBR74kiuxiqqajs4u53315kZPHwQA1Q/exec" Target="_blank" rel="noopener" class="option-card">
                     <div class="icon">
                         <i class="fas fa-edit"></i>
                     </div>
@@ -187,13 +185,19 @@
                     <p>Regístrese en los talleres y seminarios disponibles.</p>
                 </a>
                 
-                 <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbyWr_257SkV43YPqyUBRTExYre_svCLoZP5WdmURhUn0op3stOnb3IPia0moikrCnCiBA/exec" Target="_blank" class="option-card">
-
+                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbyWr_257SkV43YPqyUBRTExYre_svCLoZP5WdmURhUn0op3stOnb3IPia0moikrCnCiBA/exec" Target="_blank" rel="noopener" class="option-card">
                     <div class="icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <h2>Registrar Asistencia</h2>
                     <p>Marque su asistencia a los eventos programados para hoy.</p>
+                </a>
+
+                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbzrzCmCSvLoa7y-VY3pt9Fie1O9j3xJaA52D6nt0Z90lYZe5gGTo2zBjhQeVgTQPEzc/exec" Target="_blank" rel="noopener" class="option-card">
+                    <div class="icon">
+                        <i class="fas fa-award"></i> </div>
+                    <h2>Genera tu Constancia</h2>
+                    <p>Consulta y descarga tu constancia de participación.</p>
                 </a>
             </div>
         </main>
