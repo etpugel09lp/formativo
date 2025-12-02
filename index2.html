@@ -1,0 +1,103 @@
+/**
+ * Función principal que se ejecuta cuando un usuario visita la URL de la aplicación web.
+ * Sirve el archivo HTML principal.
+ */
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Index')
+      .setTitle('Generador de Sesiones de Aprendizaje con IA');
+}
+
+/**
+ * Llama a la API de Google Gemini para generar un plan de sesión de aprendizaje.
+ * Esta función es invocada desde el JavaScript del lado del cliente (en el archivo HTML).
+ *
+ * @param {string} topic El tema de la sesión proporcionado por el usuario.
+ * @param {string} grade El nivel educativo proporcionado por el usuario.
+ * @param {string} apiKey La clave API de Google AI del usuario.
+ * @return {string} El plan de sesión formateado en HTML, o un mensaje de error.
+ */
+function generarSesionDeAprendizaje(topic, grade, apiKey) {
+  // Verificamos que el usuario haya ingresado una clave API.
+  if (!apiKey) {
+    return "<strong>ERROR:</strong> Por favor, introduce una clave API de Google AI válida.";
+  }
+
+  // Endpoint de la API para el modelo Gemini Pro.
+  const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + apiKey;
+
+  // --- Ingeniería del Prompt: La clave para una buena respuesta ---
+  // Creamos un prompt muy específico para que la IA nos devuelva una respuesta bien estructurada.
+  const prompt = `
+    Actúa como un diseñador instruccional experto. Tu tarea es crear una sesión de aprendizaje detallada.
+
+    **Tema:** "${topic}"
+    **Nivel Educativo:** "${grade}"
+
+    Por favor, genera un plan de sesión de aprendizaje que incluya los siguientes componentes, claramente definidos:
+
+    1.  **Objetivo de Aprendizaje:** ¿Qué podrán hacer los estudiantes al final de la sesión? (Debe comenzar con un verbo de acción).
+    2.  **Actividades de Inicio (10 minutos):** Una actividad corta y atractiva para captar la atención y activar conocimientos previos.
+    3.  **Desarrollo de la Lección (25 minutos):** Explicación del concepto principal y una actividad práctica guiada.
+    4.  **Actividad de Cierre (10 minutos):** Una breve actividad para resumir el aprendizaje y verificar la comprensión.
+    5.  **Materiales Necesarios:** Una lista con viñetas de los materiales requeridos para la sesión.
+
+    Formatea toda la respuesta en Markdown para una fácil lectura.
+  `;
+
+  // Estructuramos los datos que enviaremos a la API (payload).
+  const payload = {
+    "contents": [{
+      "parts": [{
+        "text": prompt
+      }]
+    }]
+  };
+
+  // Configuramos las opciones para la solicitud HTTP.
+  const options = {
+    'method': 'post',
+    'contentType': 'application/json',
+    'payload': JSON.stringify(payload),
+    'muteHttpExceptions': true // Importante para capturar errores de la API.
+  };
+
+  try {
+    // Realizamos la llamada a la API.
+    const response = UrlFetchApp.fetch(url, options);
+    const responseCode = response.getResponseCode();
+    const responseBody = response.getContentText();
+
+    if (responseCode === 200) {
+      const data = JSON.parse(responseBody);
+      const aiResponseText = data.candidates[0].content.parts[0].text;
+      // Convertimos la respuesta de la IA (en Markdown) a HTML para mostrarla correctamente.
+      return convertirMarkdownAHtml(aiResponseText);
+    } else {
+      console.error("Error de la API:", responseBody);
+      return `<strong>ERROR ${responseCode}:</strong> No se pudo obtener una respuesta de la API. Verifica que tu clave API sea correcta y no tenga restricciones. Detalles: ${responseBody}`;
+    }
+  } catch (e) {
+    console.error("Error en la llamada a la API: " + e.toString());
+    return "<strong>ERROR:</strong> No se pudo conectar con la API. Revisa tu conexión a internet.";
+  }
+}
+
+/**
+ * Convierte texto básico de Markdown a HTML para una mejor visualización.
+ * @param {string} markdownText El texto en formato Markdown.
+ * @return {string} El texto convertido a HTML.
+ */
+function convertirMarkdownAHtml(markdownText) {
+  // Convierte **negrita** a <strong>
+  let html = markdownText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  // Convierte encabezados #, ##, ### a <h1>, <h2>, <h3>
+  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+  // Convierte listas * item a <ul><li>item</li></ul>
+  html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
+  html = html.replace(/<\/li>\n<li>/g, '</li><li>');
+  html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+  // Reemplaza los saltos de línea con <br>
+  return html.replace(/\n/g, '<br>');
+}
