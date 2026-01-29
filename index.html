@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,13 +13,12 @@
 
     <style>
         :root {
-            /* Paleta de colores ajustada para un look más corporativo */
-            --bg-color: #1e293b; /* Color principal: Pizarra oscuro */
-            --pattern-color: rgba(255, 255, 255, 0.04); /* Color del patrón sutil */
+            --bg-color: #1e293b;
+            --pattern-color: rgba(255, 255, 255, 0.04);
             --card-bg: rgba(255, 255, 255, 0.05);
-            --text-color: #e2e8f0; /* Un blanco más suave */
-            --text-color-light: #94a3b8; /* Gris claro para subtítulos */
-            --accent-color: #38bdf8; /* Azul cielo para acentos */
+            --text-color: #e2e8f0;
+            --text-color-light: #94a3b8;
+            --accent-color: #38bdf8;
         }
 
         * {
@@ -34,20 +33,16 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            
-            /* --- NUEVO FONDO FORMAL --- */
             background-color: var(--bg-color);
             background-image: 
                 radial-gradient(circle at 1px 1px, var(--pattern-color) 1px, transparent 0);
             background-size: 20px 20px;
-            /* --- Fin del nuevo fondo --- */
-
             padding: 20px;
         }
 
         .main-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px; /* Aumentado para dar espacio a los 4 botones */
             background: var(--card-bg);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -59,12 +54,10 @@
             color: var(--text-color);
         }
 
-        /* --- ESTILO AÑADIDO PARA LA IMAGEN --- */
         .logo-img {
-            max-height: 80px; /* Ajusta la altura máxima del logo */
-            margin-bottom: 20px; /* Espacio entre el logo y el texto */
+            max-height: 80px;
+            margin-bottom: 20px;
         }
-        /* --- FIN DEL ESTILO AÑADIDO --- */
 
         .header-logo {
             font-weight: 600;
@@ -98,20 +91,23 @@
         }
 
         .options-grid {
-            /* === MODIFICACIÓN: 3 columnas para el nuevo botón === */
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr; 
-            gap: 30px;
+            /* === MODIFICACIÓN: 4 columnas para el nuevo botón === */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 25px; /* Espacio ligeramente reducido para mejor ajuste */
         }
 
         .option-card {
             background: rgba(255, 255, 255, 0.08);
-            padding: 30px;
+            padding: 25px; /* Padding ajustado */
             border-radius: 15px;
             text-decoration: none;
             color: var(--text-color);
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .option-card:hover {
@@ -122,20 +118,20 @@
         }
 
         .option-card .icon {
-            font-size: 3rem;
+            font-size: 2.8rem; /* Icono ligeramente más pequeño */
             margin-bottom: 15px;
             color: var(--accent-color);
         }
 
         .option-card h2 {
-            font-size: 1.4rem;
+            font-size: 1.2rem; /* Título ligeramente más pequeño */
             font-weight: 600;
             margin-bottom: 8px;
             color: #ffffff;
         }
 
         .option-card p {
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* Descripción ligeramente más pequeña */
             color: var(--text-color-light);
         }
         
@@ -145,6 +141,14 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* === NUEVA REGLA RESPONSIVA PARA TABLETS === */
+        @media (max-width: 1024px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columnas en tablets */
+                gap: 25px;
+            }
+        }
+        
         /* Diseño Responsivo para Móviles */
         @media (max-width: 768px) {
             .main-container {
@@ -156,7 +160,6 @@
             }
 
             .options-grid {
-                /* Se mantiene 1 columna en móvil para mejor legibilidad */
                 grid-template-columns: 1fr; 
                 gap: 20px;
             }
@@ -195,9 +198,19 @@
 
                 <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbzrzCmCSvLoa7y-VY3pt9Fie1O9j3xJaA52D6nt0Z90lYZe5gGTo2zBjhQeVgTQPEzc/exec" Target="_blank" rel="noopener" class="option-card">
                     <div class="icon">
-                        <i class="fas fa-award"></i> </div>
+                        <i class="fas fa-award"></i> 
+                    </div>
                     <h2>Genera tu Constancia</h2>
                     <p>Consulta y descarga tu constancia de participación.</p>
+                </a>
+
+                <!-- === NUEVO BOTÓN AÑADIDO AQUÍ === -->
+                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbwYKVBY4Uop4jOH8FwIFm92bFX2PZnhy8dlCT3zAd8KPzRDcnDompBGJPdlYH40XXNtYQ/exec" Target="_blank" rel="noopener" class="option-card">
+                    <div class="icon">
+                        <i class="fas fa-download"></i> 
+                    </div>
+                    <h2>Recursos y Materiales</h2>
+                    <p>Descarga presentaciones, guías y otros documentos.</p>
                 </a>
             </div>
         </main>
@@ -208,12 +221,4 @@
     </div>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
