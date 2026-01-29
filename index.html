@@ -42,7 +42,7 @@
 
         .main-container {
             width: 100%;
-            max-width: 1100px; /* Aumentado para dar espacio a los 4 botones */
+            max-width: 1100px;
             background: var(--card-bg);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -92,14 +92,15 @@
 
         .options-grid {
             display: grid;
-            /* === MODIFICACIÓN: 4 columnas para el nuevo botón === */
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 25px; /* Espacio ligeramente reducido para mejor ajuste */
+            /* === MODIFICACIÓN: 3 columnas, la última más pequeña === */
+            grid-template-columns: 1fr 1fr 0.8fr;
+            gap: 30px;
+            align-items: stretch;
         }
 
         .option-card {
             background: rgba(255, 255, 255, 0.08);
-            padding: 25px; /* Padding ajustado */
+            padding: 30px;
             border-radius: 15px;
             text-decoration: none;
             color: var(--text-color);
@@ -108,6 +109,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            height: 100%;
         }
 
         .option-card:hover {
@@ -118,38 +120,60 @@
         }
 
         .option-card .icon {
-            font-size: 2.8rem; /* Icono ligeramente más pequeño */
+            font-size: 3rem;
             margin-bottom: 15px;
             color: var(--accent-color);
         }
 
         .option-card h2 {
-            font-size: 1.2rem; /* Título ligeramente más pequeño */
+            font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: #ffffff;
         }
 
         .option-card p {
-            font-size: 0.9rem; /* Descripción ligeramente más pequeña */
+            font-size: 0.95rem;
             color: var(--text-color-light);
         }
+
+        /* === NUEVO: Contenedor para los botones pequeños === */
+        .secondary-options-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
         
+        /* === NUEVO: Estilos para hacer los botones más pequeños === */
+        .option-card-small {
+            padding: 20px;
+        }
+        
+        .option-card-small .icon {
+            font-size: 2.2rem;
+        }
+        
+        .option-card-small h2 {
+            font-size: 1.1rem;
+        }
+
+        .option-card-small p {
+            font-size: 0.85rem;
+        }
+
         footer {
             margin-top: 40px;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* === NUEVA REGLA RESPONSIVA PARA TABLETS === */
         @media (max-width: 1024px) {
             .options-grid {
-                grid-template-columns: 1fr 1fr; /* 2 columnas en tablets */
-                gap: 25px;
+                /* Se muestran todos en una sola columna en tablets y móviles */
+                grid-template-columns: 1fr; 
             }
         }
         
-        /* Diseño Responsivo para Móviles */
         @media (max-width: 768px) {
             .main-container {
                 padding: 30px 25px;
@@ -157,11 +181,6 @@
 
             h1 {
                 font-size: 2rem;
-            }
-
-            .options-grid {
-                grid-template-columns: 1fr; 
-                gap: 20px;
             }
         }
     </style>
@@ -180,6 +199,7 @@
 
         <main>
             <div class="options-grid">
+                <!-- Botón Principal 1 -->
                 <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbwUwRhioQgsVZo39yEp04A45B_bZYXcrnZ1Pz0HBR74kiuxiqqajs4u53315kZPHwQA1Q/exec" Target="_blank" rel="noopener" class="option-card">
                     <div class="icon">
                         <i class="fas fa-edit"></i>
@@ -188,6 +208,7 @@
                     <p>Regístrese en los talleres y seminarios disponibles.</p>
                 </a>
                 
+                <!-- Botón Principal 2 -->
                 <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbyWr_257SkV43YPqyUBRTExYre_svCLoZP5WdmURhUn0op3stOnb3IPia0moikrCnCiBA/exec" Target="_blank" rel="noopener" class="option-card">
                     <div class="icon">
                         <i class="fas fa-check-circle"></i>
@@ -196,22 +217,26 @@
                     <p>Marque su asistencia a los eventos programados para hoy.</p>
                 </a>
 
-                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbzrzCmCSvLoa7y-VY3pt9Fie1O9j3xJaA52D6nt0Z90lYZe5gGTo2zBjhQeVgTQPEzc/exec" Target="_blank" rel="noopener" class="option-card">
-                    <div class="icon">
-                        <i class="fas fa-award"></i> 
-                    </div>
-                    <h2>Genera tu Constancia</h2>
-                    <p>Consulta y descarga tu constancia de participación.</p>
-                </a>
+                <!-- === NUEVO: Columna para los botones secundarios === -->
+                <div class="secondary-options-column">
+                    <!-- Botón Secundario 1 (Pequeño) -->
+                    <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbzrzCmCSvLoa7y-VY3pt9Fie1O9j3xJaA52D6nt0Z90lYZe5gGTo2zBjhQeVgTQPEzc/exec" Target="_blank" rel="noopener" class="option-card option-card-small">
+                        <div class="icon">
+                            <i class="fas fa-award"></i> 
+                        </div>
+                        <h2>Genera tu Constancia</h2>
+                        <p>Consulta y descarga tu constancia.</p>
+                    </a>
 
-                <!-- === NUEVO BOTÓN AÑADIDO AQUÍ === -->
-                <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbwYKVBY4Uop4jOH8FwIFm92bFX2PZnhy8dlCT3zAd8KPzRDcnDompBGJPdlYH40XXNtYQ/exec" Target="_blank" rel="noopener" class="option-card">
-                    <div class="icon">
-                        <i class="fas fa-download"></i> 
-                    </div>
-                    <h2>Recursos y Materiales</h2>
-                    <p>Descarga presentaciones, guías y otros documentos.</p>
-                </a>
+                    <!-- Botón Secundario 2 (Pequeño) -->
+                    <a href="https://script.google.com/a/macros/perueduca.edu.pe/s/AKfycbwYKVBY4Uop4jOH8FwIFm92bFX2PZnhy8dlCT3zAd8KPzRDcnDompBGJPdlYH40XXNtYQ/exec" Target="_blank" rel="noopener" class="option-card option-card-small">
+                        <div class="icon">
+                            <i class="fas fa-download"></i> 
+                        </div>
+                        <h2>Recursos y Materiales</h2>
+                        <p>Descarga guías y otros documentos.</p>
+                    </a>
+                </div>
             </div>
         </main>
         
